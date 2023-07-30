@@ -2,20 +2,25 @@ using UnityEngine;
 
 public class Physics : MonoBehaviour
 {
+    [SerializeField] private FloatVariable velocity;
+
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float mountainSlope = 35f;
 
     private float accX;
-    private float velI = 0;
+
+    private void Start() {
+        velocity.Value = 0;
+    }
 
     private void Update() {
         CalculateAccX();
-        float distance = KinematicDisplacement(velI, Time.deltaTime, accX);
+        float distance = KinematicDisplacement(velocity.Value, Time.deltaTime, accX);
 
         transform.Translate(new Vector3(0f, distance, 0f));
 
-        float velF = KinematicVelocity(velI, accX, Time.deltaTime);
-        velI = velF;
+        float velF = KinematicVelocity(velocity.Value, accX, Time.deltaTime);
+        velocity.Value = velF;
     }
 
     private void CalculateAccX() {
