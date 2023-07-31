@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private FloatVariable steerAngle;
-    [SerializeField] private FloatVariable rotateSpeed;
 
     private Transform graphics;
 
